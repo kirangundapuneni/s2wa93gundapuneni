@@ -1,3 +1,9 @@
+/**
+ * @Author: Your name
+ * @Date:   2022-03-25 01:30:24
+ * @Last Modified by:   Your name
+ * @Last Modified time: 2022-03-30 17:50:57
+ */
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,12 +12,14 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var mydataRouter = require('./routes/mydata');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use('/mydata',mydataRouter);
 
 app.use(logger('dev'));
 app.use(express.json());
