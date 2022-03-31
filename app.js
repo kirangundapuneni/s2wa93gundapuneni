@@ -2,7 +2,7 @@
  * @Author: Your name
  * @Date:   2022-03-25 01:30:24
  * @Last Modified by:   Your name
- * @Last Modified time: 2022-03-30 17:50:57
+ * @Last Modified time: 2022-03-30 19:51:22
  */
 var createError = require('http-errors');
 var express = require('express');
@@ -13,13 +13,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mydataRouter = require('./routes/mydata');
+var computationRouter = require('./routes/computation');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-app.use('/mydata',mydataRouter);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,7 +27,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/mydata',mydataRouter);
 app.use('/users', usersRouter);
+app.use('/computation', computationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
